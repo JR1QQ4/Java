@@ -65,7 +65,13 @@ Java术语：
 - u(Update)，Oracle的术语，表示bug修正版本，JavaSE 8u31即Java SE 8的第31次更新，内部版本号1.8.0_31
 - NetBeans，Oracle的集成开发环境
 
-
+部署 Java 应用程序：
+- JAR文件：
+    - 创建：jar cvf JARFileName File1 File2 ...
+    - 清单文件（manifest），创建：jar cfm JARFileName ManifestFileName ...，更新：jar ufm JARFileName ManifestFileName
+    - 可执行JAR文件，启动应用程序：java -jar MyProgram.jar  
+- applet，包含在HTML页面中的Java程序
+- Java Web Start
 
 
 
