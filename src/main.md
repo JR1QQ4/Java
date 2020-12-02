@@ -73,6 +73,28 @@ Java术语：
 - applet，包含在HTML页面中的Java程序
 - Java Web Start
 
+Java环境搭建：
+- 安装JDK
+    - 搜索Java Archive，选择下载源并安装（建议创建一个专门放Java文件的目录，如d:\java）
+    - 添加JAVA_HOME环境变量
+    - 添加Path环境变量%JAVA_HOME%\bin（Windows系统变量优先级高，Mac用户变量优先级高）
+    - 测试安装完成：cmd中输入java -version和javac
+
+Java Class类：
+- Java文件必须以.java作为扩展名
+- 一个Java文件只能有一个public class
+- public class的名字必须和文件名字一样，大小写都要完全一致（大驼峰命名）
+- 一个文件可以有多个class，但只能有一个public。不提倡一个文件放多个类（内部类除外）
+    - ps：为了能快速练习代码，一个文件李创建了多个类，这是不规范的
+- 类是Java中的最基础逻辑单位，所有内容都需要放在类的范围中，Java项目就是一个个类组成的
+- 类的构成：成员变量/属性、成员方法/函数
+
+Main函数（PSVM）：
+- 一个class最多只能有一个main函数，类可以没有main函数
+- 程序的入口都是main函数
+- main函数的修饰符public static void不能省略
+- main函数无法被其他方法/类所调用
+- String[] args是main函数的形参
 
 
 
