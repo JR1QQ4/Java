@@ -23,7 +23,6 @@ enum Size {
 /**
  * 继承
  */
-
 public class Core_03 {
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 //        Manager boss = new Manager("Carl Cracker", 80000, 1987, 12, 15);

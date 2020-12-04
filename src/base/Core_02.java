@@ -161,19 +161,19 @@ public class Core_02 {
 //        tripSalary(harry);
 //        System.out.println("After: salary=" + harry.getSalary());
 //
-//        System.out.println("\nTesting swap:");
-//        Employee a = new Employee("Alice", 620000);
-//        Employee b = new Employee("Bob", 530000);
-//        System.out.println("Before: a=" + a.getName());
-//        System.out.println("Before: b=" + b.getName());
-//        swap(a, b);
-//        System.out.println("After: a=" + a.getName());
-//        System.out.println("After: b=" + b.getName());
+        System.out.println("\nTesting swap:");
+        Employee a = new Employee("Alice", 620000);
+        Employee b = new Employee("Bob", 530000);
+        System.out.println("Before: a=" + a.getName());
+        System.out.println("Before: b=" + b.getName());
+        swap(a, b);
+        System.out.println("After: a=" + a.getName());
+        System.out.println("After: b=" + b.getName());
 
         // 重载：多个方法有相同的名字、不同的参数
 
-        Employee a = new Employee("Harry", 40000);
-        System.out.println("name=" + a.getName() + ",id=" + a.getId() + ",salary=" + a.getSalary());
+//        Employee a = new Employee("Harry", 40000);
+//        System.out.println("name=" + a.getName() + ",id=" + a.getId() + ",salary=" + a.getSalary());
     }
 }
 

@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.*;
 import java.util.function.Consumer;
 
+/**
+ * lambda
+ */
 public class Core_05 {
     public static void main(String[] args) {
         /*
