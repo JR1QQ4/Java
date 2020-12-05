@@ -193,7 +193,14 @@ JCF（Java Collection Framework）：
     - 节点类：InputStream,OutputStream(字节FileInputStream,FileOutputStream)，Reader,Writer(字符)
     - 转换类：字符到字节之间的转化；InputStreamReader,OutputStreamWriter
     - 装饰类：DataInputStream,DataOutputStream，BufferInputStream,BufferOutputStream，BufferedReader,BufferedWriter
-
+    - try-resource读写文件会自动关闭资源
+- 二进制文件读写：
+    - 写文件：FileOutputStream,BufferedOutputStream,DataOutputStream
+    - 读文件：FileInputStream,BufferedInputStream,DataInputStream
+    - 读文件是一一对应的
+- Zip包：java.util.zip(java.io.InputStream,java.io.OutputStream的子类)
+    - ZipInputStream,ZipOutputStream压缩文件输入/输出流
+    - ZipEntry压缩项
 
 tips：
 - 常量设计：
