@@ -11,6 +11,7 @@ public class FileAnalyzer {
     public FileAnalyzer(String fileStr) {
         this.fileStr = fileStr;
     }
+
     public HashMap<String, Word> getWordCount(){
         HashMap<String, Word> result = new HashMap<>();
         String line;

@@ -6,10 +6,13 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 
 public class Searcher implements FileVisitor {
+    // PathMatcher一个功能接口，因此可以用作lambda表达式或方法引用的赋值目标
     private final PathMatcher matcher;
     private ArrayList<String> filePaths = new ArrayList<>();
 
     public Searcher(String ext) {
+        // getPathMatcher路径匹配器，可用于匹配模式的路径syntax:pattern
+        // 当语法为“ glob ”时，路径的String表示使用类似于正则表达式但具有更简单语法的有限模式语言进行匹配
         matcher = FileSystems.getDefault().getPathMatcher("glob:" + ext);
     }
 

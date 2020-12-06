@@ -214,7 +214,6 @@ tips：
         - 常量式(字面量)赋值创建是放在栈内存中(将被常量化)，new对象创建放在堆中(不会常量化)
 
 
-
 设计模式：
 - 单例模式：单态模式，Singleton
     - 限定某一个类在整个程序运行过程中，只能保留一个实例对象在内存空间
@@ -222,6 +221,18 @@ tips：
     - 保证一个类有且只有一个对象；static共享对象实例，private构造函数防止new
 
 
+Maven:
+- 一种自动下载、管理jar包又能配置build path的构建工具；Maven本身是一个软件/插件，需要添加
+- 使用步骤：
+    1. 创建Maven项目，而不是创建Java项目
+    2. 再mvn中央仓库(mvnrepository.com)中搜索想要的第三方库，如Commons Math
+    3. 选择对应的版本，复制Maven依赖文本到项目的pom.xml文件中
+    4. 编译和构建整个项目:右边项目 -> Run as -> Maven Build，不是运行而是构建，构建会自动下载依赖的jar包
+    5. 构建完成就可以运行:Run as -> Java Application
+    
+JUnit：
+- 一个Java语言的单元测试框架，是xUnit家族中最成功的一个
+- 直接运行测试用例，一次只能执行一个；Maven Test可以执行所有的测试用例
 
 
 
