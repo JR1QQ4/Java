@@ -234,11 +234,23 @@ JUnit：
 - 一个Java语言的单元测试框架，是xUnit家族中最成功的一个
 - 直接运行测试用例，一次只能执行一个；Maven Test可以执行所有的测试用例
 
+字符编码：
+- 字符不可以分割，ASCII码，扩展编码GB2132等，Unicode编码
+- 国际化编程i18n，多语言版本的软件，java.util.Locale,java.util.ResourceBundle
+    - 语言文件命名规则：包名(+语言+国家地区).properties，例如，message_zh_CN.properties
+    - 语言文件必须是ASCII码文件，如果是ASCII以外的文字，必须用Unicode码表示，native2ascii.exe可以进行转码
 
+正则表达式Regular Expression：
+- 匹配模板组成：定界符、原子、特殊功能字符(元字符)、模式修正符；书籍《精通正则表达式》Jeffrey E.F.Friedl著
+- java.util.regex：Pattern(compile,matcher)，Matcher(Index Methods位置方法,Study Methods查找方法,Replacement Methods替换方法)
 
-
-
-
+XML(eXtensible Markup Language):
+- 可扩展标记语言：意义+数据；标签自行定义具有自我描述性；纯文本表示具有跨平台/系统/语言的特性
+- DTD(Document Type Definition)
+- XML Schema，DTD的下一代
+- XSL，扩展样式语言
+- Java解析XML方法：树结构、流结构；
+    - DocumentBuilder解析类，parse方法；Node节点，getChildNodes返回一个NodeList；NodeList节点列表，每个元素是一个Node
 
 
 
