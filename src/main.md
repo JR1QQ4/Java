@@ -251,6 +251,34 @@ XML(eXtensible Markup Language):
 - XSL，扩展样式语言
 - Java解析XML方法：树结构、流结构；
     - DocumentBuilder解析类，parse方法；Node节点，getChildNodes返回一个NodeList；NodeList节点列表，每个元素是一个Node
+    - SAX: 采用事件/流模型来解析，一次性读取
+    - Stax: 流模型中的拉模型，XMLStreamReader,XMLEventReader
 
+JSON(JavaScript Object Notation)JS对象表示法:
+- JSONObject，名称/值对
+- JSONArray，JSON数组
+- 第三方处理包：org.json、GSON、Jackson
 
+图形图像处理：
+- 图形Graph，矢量图根据几何特性来画的
+    - java.awt包，java 2D库，Color,Stroke
+- 图像Image，由像素点组成
+    - javax.imageio包
+    
+多线程和多进程：
+- 多线程：
+    - 两种方法创建多线程：java.lang.Thread或者java.lang.Runnable接口
+    - 使用start方法启动会自动以新进程调用run方法
+    - 直接调用run方法，将会变成串行执行；线程启动的先后顺序时随机的
+    - volatile和static解决变量公用
+    - 互斥synchronized
+    - 线程状态的生命周期
+    
+网络编程：
+- UDP
+- TCP
+- Java HTTP编程(java.net包)
+- Java NIO(No Blocking I/O)
+
+Java混合编程：C语言，JavaScript，Web Service，Python，命令行
 

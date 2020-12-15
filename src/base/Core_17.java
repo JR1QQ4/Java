@@ -1,10 +1,13 @@
 package base;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.awt.print.Book;
+import java.io.File;
+import java.io.FileReader;
 import java.nio.charset.Charset;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.SortedMap;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,6 +60,9 @@ class NewHelloWorld {
     }
 }
 
+/**
+ * 正则
+ */
 class MatcherDemo {
     private static final String REGEX = "\\bdog\\b";  // \b表示边界
     private static final String INPUT = "dog dog dog doggie dogg";
@@ -99,4 +105,101 @@ class RegexDemo {
         System.out.println("INPUT: " + INPUT);
         System.out.println("new StringBuffer: " + sb);
     }
+}
+
+/**
+ * JSON
+ */
+class NewPerson {
+    private String name;
+    private int age;
+    private List<Integer> scores;
+
+    public NewPerson() {
+    }
+
+    public NewPerson(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public List<Integer> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Integer> scores) {
+        this.scores = scores;
+    }
+}
+
+class JSONHandler {
+    public static void main(String[] args) {
+        testJsonObject();
+        System.out.println("=========================");
+    }
+
+    public static void testJsonObject() {
+        NewPerson p = new NewPerson();
+        p.setName("Tom");
+        p.setAge(20);
+        p.setScores(Arrays.asList(60, 70, 80));
+
+        // JSONObject来自org.json
+        JSONObject obj = new JSONObject();
+        obj.put("name", p.getName());
+        obj.put("age", p.getAge());
+        obj.put("scores", p.getScores());
+        System.out.println(obj);
+        System.out.println("name: " + obj.getString("name"));
+        System.out.println("age: " + obj.getInt("age"));
+        System.out.println("scores: " + obj.getJSONArray("scores"));
+    }
+
+//    public static void testJsonFile() {
+//        File file = new File("src/data/books.json");
+//        try(FileReader reader = new FileReader(file)){
+//            int fileLen = (int)file.length();
+//            char[] chars = new char[fileLen];
+//            reader.read(chars);
+//            String s = String.valueOf(chars);
+//            JSONObject jsonObject = new JSONObject(s);
+//
+//            JSONArray books = jsonObject.getJSONArray("books");
+//            List<Book> bookList = new ArrayList<>();
+//            for (Object book :
+//                    books) {
+//                JSONObject bookObject = (JSONObject) book;
+//                Book book1 = new Book();
+//                book1.setAuthor(bookObject.getString("author"));
+//                book1.setYear(bookObject.getString("year"));
+//                book1.setTitle(bookObject.getString("title"));
+//                book1.setPrice(bookObject.getString("price"));
+//                book1.setCategory(bookObject.getString("category"));
+//                bookList.add(book1);
+//            }
+//            for (Book book :
+//                    bookList) {
+//                System.out.println(book.getAuthor() + ", " + book.getTitle());
+//            }
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 }

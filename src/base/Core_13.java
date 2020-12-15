@@ -4,14 +4,30 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.helpers.XMLReaderFactory;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.stream.*;
+import javax.xml.stream.events.Attribute;
+import javax.xml.stream.events.EndElement;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * XML
@@ -19,6 +35,9 @@ import java.io.File;
 public class Core_13 {
 }
 
+/**
+ * 基本模型
+ */
 class DomReader {
     public static void main(String[] args) {
         recursiveTraverse();  // 自上而下进行解析
@@ -126,6 +145,158 @@ class DomWriter {
                 System.out.println("write xml file successfully");
             }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+/**
+ * SAX
+ */
+class SAXReader {
+    public static void main(String[] args) throws SAXException, IOException {
+        XMLReader parser = XMLReaderFactory.createXMLReader();
+        BookHandler bookHandler = new BookHandler();
+        parser.setContentHandler(bookHandler);
+        parser.parse("src/data/books.xml");
+        System.out.println(bookHandler.getNameList());
+    }
+}
+
+class BookHandler extends DefaultHandler {
+    private List<String> nameList;
+    private boolean title = false;
+
+    @Override
+    public void startDocument() throws SAXException {
+        // xml文档加载时
+        System.out.println("Start parsing document...");
+        nameList = new ArrayList<String>();
+    }
+
+    @Override
+    public void endDocument() throws SAXException {
+        // 文档解析结束时
+        System.out.println("End");
+    }
+
+    @Override
+    public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
+        // 访问某一个元素
+        if (qName.equals("title")) {
+            title = true;
+        }
+    }
+
+    @Override
+    public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
+        // 结束访问元素
+        if (title) {
+            title = false;
+        }
+    }
+
+    @Override
+    public void characters(char[] ch, int start, int length) {
+        // 访问元素正文
+        if (title) {
+            String bookTitle = new String(ch, start, length);
+            System.out.println("Book title: " + bookTitle);
+            nameList.add(bookTitle);
+        }
+    }
+
+    public List<String> getNameList() {
+        return nameList;
+    }
+
+    public void setNameList(List<String> nameList) {
+        this.nameList = nameList;
+    }
+}
+
+/**
+ * Stax
+ */
+class StaxReader {
+    public static void main(String[] args) {
+        StaxReader.readByStream();
+        System.out.println("==============");
+        StaxReader.readByEvent();
+    }
+
+    // 流模式
+    public static void readByStream() {
+        String xmlFile = "src/data/books.xml";
+        XMLInputFactory factory = XMLInputFactory.newFactory();
+        XMLStreamReader streamReader = null;
+        try {
+            streamReader = factory.createXMLStreamReader(new FileReader(xmlFile));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (XMLStreamException e) {
+            e.printStackTrace();
+        }
+
+        // 基于指针遍历
+        try {
+            while (streamReader.hasNext()) {
+                int event = streamReader.next();
+                // 如果时元素的开始
+                if (event == XMLStreamConstants.START_ELEMENT) {
+                    // 列出所有书籍名称
+                    if ("title".equalsIgnoreCase(streamReader.getLocalName())) {
+                        System.out.println("title: " + streamReader.getElementText());
+                    }
+                }
+            }
+            streamReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 事件模式
+    public static void readByEvent() {
+        String xmlFile = "src/data/books.xml";
+        XMLInputFactory factory = XMLInputFactory.newFactory();
+        boolean titleFlag = false;
+        try {
+            // 创建基于迭代器的事件读取器对象
+            XMLEventReader eventReader = factory.createXMLEventReader(new FileReader(xmlFile));
+            while (eventReader.hasNext()){
+                XMLEvent event = eventReader.nextEvent();
+                if (event.isStartElement()){
+                    StartElement start = event.asStartElement();
+                    String name = start.getName().getLocalPart();
+                    if (name.equals("title")){
+                        titleFlag = true;
+                        System.out.print("title: ");
+                    }
+                    // 读取所有属性
+                    Iterator attrs = start.getAttributes();
+                    while (attrs.hasNext()){
+                        Attribute attr = (Attribute) attrs.next();
+                    }
+                }
+                if (event.isCharacters()){
+                    String s = event.asCharacters().getData();
+                    if (null != s && s.trim().length()>0&&titleFlag){
+                        System.out.println(s.trim());
+                    }
+                }
+                if (event.isEndElement()){
+                    EndElement end = event.asEndElement();
+                    String name = end.getName().getLocalPart();
+                    if (name.equals("title")){
+                        titleFlag = false;
+                    }
+                }
+            }
+            eventReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (XMLStreamException e) {
             e.printStackTrace();
         }
     }

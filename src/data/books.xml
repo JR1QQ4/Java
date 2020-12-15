@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bookstore>
+    <books>
+        <book category="JAVA">
+            <title>Java核心技术 卷I</title>
+            <author>凯·S.霍斯特曼</author>
+            <year>2019</year>
+            <price>74.50</price>
+        </book>
+        <book category="CHILDREN">
+            <title>美国儿科学会育儿百科</title>
+            <author>塔尼娅·奥尔特曼</author>
+            <year>2020</year>
+            <price>54.00</price>
+        </book>
+        <book category="COOKING">
+            <title>267 碗好吃的面</title>
+            <author>杨桃美食编辑部</author>
+            <year>2015</year>
+            <price>22.70</price>
+        </book>
+    </books>
+</bookstore>
