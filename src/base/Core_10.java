@@ -13,6 +13,10 @@ package base;
  * 读/写锁：rwl.readLock() rwl.writeLock()
  */
 public class Core_10 {
+    public static void main(String[] args) {
+        String a = null;
+        System.out.println(a);
+    }
 }
 
 /**

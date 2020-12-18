@@ -282,3 +282,23 @@ JSON(JavaScript Object Notation)JS对象表示法:
 
 Java混合编程：C语言，JavaScript，Web Service，Python，命令行
 
+注解：@interface -> 装饰器
+
+JVM虚拟机：
+- JVM内存
+
+垃圾收集器(GC，Garbage Collector)的工作职责：
+- 什么内存需要收集(判定无用的对象)
+- 什么时候回收(何时启动，不影响程序正常进行)
+- 如何回收(回收过程，要求速度块/时间短/影响小)
+
+JDK提供的工具：
+- 编译/运行工具：javac/java
+- 打包工具：jar
+- 文档工具：javadoc
+— 国际化工具：native2ascii
+- 混合编程工具：javah
+- 反编译工具：javap
+- 程序运行管理工具：jps/jstat/jinfo/jstack/jstatd/jcmd
+- 可视化管理工具：JConsole/Visual VM/Mission Control
+- 堆内存分析：jmap/jhat
